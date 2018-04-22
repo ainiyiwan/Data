@@ -1,13 +1,12 @@
-package zy.com.githubuse;
-
-import com.google.gson.reflect.TypeToken;
-import com.qncb.sportApp.bean.socker.FootballRollingBallBean;
-import com.qncb.sportApp.bean.socker.FootballRollingBallSection;
-import com.qncb.sportApp.http.callback.Convert;
+package zy.com.githubuse.helper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import zy.com.githubuse.bean.FootballRollingBallBean;
+import zy.com.githubuse.bean.FootballRollingBallSection;
 
 /**
  * ================================================
@@ -23,6 +22,7 @@ public class FootballRollingBallDataHelper {
 
     private static volatile FootballRollingBallDataHelper singleton;
     private HashMap<String, List<FootballRollingBallBean>> map;
+    private Map<String, Integer> mapPosition = new HashMap<>();
 
     private String score = "score";
     private String schedule = "schedule";
@@ -50,8 +50,8 @@ public class FootballRollingBallDataHelper {
      * @param data 数据
      */
     public void setData(Object data) {
-        String json = Convert.toJson(data);
-        map = Convert.fromJson(json, new TypeToken<HashMap<String,List<FootballRollingBallBean>>>(){}.getType());
+//        String json = Convert.toJson(data);
+//        map = Convert.fromJson(json, new TypeToken<HashMap<String,List<FootballRollingBallBean>>>(){}.getType());
     }
 
 
@@ -76,6 +76,17 @@ public class FootballRollingBallDataHelper {
 
         for (int i = 0; i < matchendList.size(); i++) {
             list.add(new FootballRollingBallSection(matchendList.get(i)));
+        }
+
+        //初始化map
+        for (int i = 0; i < list.size(); i++) {
+            boolean isHeader = list.get(i).isHeader;
+            if (!isHeader) {
+                FootballRollingBallBean ballBean = list.get(i).t;
+                mapPosition.put(ballBean.gid, i);
+            } else {
+                mapPosition.put("header", i);
+            }
         }
 
         return list;

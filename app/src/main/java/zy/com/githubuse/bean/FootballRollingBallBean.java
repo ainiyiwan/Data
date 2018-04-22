@@ -1,4 +1,4 @@
-package zy.com.githubuse;
+package zy.com.githubuse.bean;
 
 import java.io.Serializable;
 
@@ -7,14 +7,13 @@ import java.io.Serializable;
  * 作    者：Luffy（张阳）
  * 版    本：1.0
  * 创建日期：2018/4/20
- * 描    述：
+ * 描    述：滚球
  * 修订历史：
  * ================================================
  */
-public class FootballResultBean implements Serializable {
-    private static final long serialVersionUID = -8995875828189927495L;
+public class FootballRollingBallBean implements Serializable {
 
-
+    private static final long serialVersionUID = -7406497384407333028L;
     /**
      * explain : 中立场：韩国
      * gid : 6883625

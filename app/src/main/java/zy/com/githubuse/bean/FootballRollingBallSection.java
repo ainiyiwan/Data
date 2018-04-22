@@ -1,4 +1,4 @@
-package zy.com.githubuse;
+package zy.com.githubuse.bean;
 
 import com.chad.library.adapter.base.entity.SectionEntity;
 
