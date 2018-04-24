@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private int gid = 10000;
 
 
-    private static final long HEART_BEAT_RATE = 1000;
+    private static final long HEART_BEAT_RATE = 500;
 
     @SuppressLint("HandlerLeak")
     private Handler uiHandler = new Handler() {
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        for (int i = 0; i < 500; i++) {
+        for (int i = 0; i < 5000; i++) {
             Random random = new Random();
 
             String gid = String.valueOf(10000 + i);
