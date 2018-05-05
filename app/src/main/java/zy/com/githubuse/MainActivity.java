@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private int gid = 10000;
 
 
-    private static final long HEART_BEAT_RATE = 500;
+    private static final long HEART_BEAT_RATE = 10;
 
     @SuppressLint("HandlerLeak")
     private Handler uiHandler = new Handler() {
@@ -106,10 +107,14 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.send)
     public void onSendClicked() {
 //        gid = gid + 1;
-//        FootballResultBean bean = new FootballResultBean(String.valueOf(gid),"2","3",true);
-//        MessageEvent<FootballResultBean> event = new MessageEvent<FootballResultBean>(EventType
-// .MQTT, bean);
-//        EventBus.getDefault().post(event);
+        gid = 10001;
+        Random random = new Random();
+        String vScore = random.nextInt(10) + "";
+        String hScore = random.nextInt(10) + "";
+        FootballResultBean bean = new FootballResultBean(String.valueOf(gid),vScore,hScore,true);
+        MessageEvent<FootballResultBean> event = new MessageEvent<FootballResultBean>(EventType.MQTT, bean);
+        EventBus.getDefault().post(event);
+//        EventbusUtil.sendMessage();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -123,6 +128,9 @@ public class MainActivity extends AppCompatActivity {
                     adapter.setData(position, bean);
                 }
 //                adapter.notifyItemChanged(position, "aaaa");
+                break;
+            case EventType.UTIL:
+                Toast.makeText(this, "收到工具类发的消息", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;

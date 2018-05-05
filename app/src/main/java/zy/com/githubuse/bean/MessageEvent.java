@@ -8,6 +8,10 @@ public class MessageEvent<T> {
     public String type;
     public T data;
 
+    public MessageEvent(String type) {
+        this.type = type;
+    }
+
     public MessageEvent(String type, T data) {
         this.type = type;
         this.data = data;

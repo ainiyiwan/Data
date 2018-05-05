@@ -7,4 +7,5 @@ package zy.com.githubuse.bean;
 public class EventType {
 
     public static final String MQTT = "MQTT";
+    public static final String UTIL = "util";
 }
